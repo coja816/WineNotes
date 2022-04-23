@@ -18,8 +18,8 @@ import java.util.*
 
 class NoteActivity : AppCompatActivity() {
 
-    private lateinit var binding : ActivityNoteBinding
-    private var note : Note? = null
+    private lateinit var binding: ActivityNoteBinding
+    private var note: Note? = null
     private var update = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,11 @@ class NoteActivity : AppCompatActivity() {
 
         binding.btnAdd.setOnClickListener {
             if (update) {
-                val note = Note(noteName = edtTitle.text.toString(), wineryNotes = edtDescription.text.toString(), createdDate = note!!.createdDate)
+                val note = Note(
+                    noteName = edtTitle.text.toString(),
+                    wineryNotes = edtDescription.text.toString(),
+                    createdDate = note!!.createdDate
+                )
                 note.id = this.note!!.id
                 val db = AppDatabase.getDatabase(applicationContext)
                 val dao = db.notesDao()
@@ -51,7 +55,11 @@ class NoteActivity : AppCompatActivity() {
                     }
                 }
             } else {
-                val note = Note(noteName = edtTitle.text.toString(), wineryNotes = edtDescription.text.toString(), createdDate = formatDate(Date()))
+                val note = Note(
+                    noteName = edtTitle.text.toString(),
+                    wineryNotes = edtDescription.text.toString(),
+                    createdDate = formatDate(Date())
+                )
                 val db = AppDatabase.getDatabase(applicationContext)
                 val dao = db.notesDao()
                 CoroutineScope(Dispatchers.IO).launch {

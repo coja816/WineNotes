@@ -8,7 +8,7 @@ interface NoteDao {
     @Query("SELECT * FROM note")
     fun getAllNotes(): List<Note>
 
-   @Insert(onConflict = OnConflictStrategy.REPLACE)
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
     fun addNote(note: Note)
 
     @Update

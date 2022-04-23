@@ -39,7 +39,8 @@ class MainActivity : AppCompatActivity() {
 
         val layoutManager = LinearLayoutManager(this)
         binding.recyclerview.layoutManager = layoutManager
-        val dividerItemDecoration = DividerItemDecoration(applicationContext,layoutManager.getOrientation())
+        val dividerItemDecoration =
+            DividerItemDecoration(applicationContext, layoutManager.getOrientation())
         binding.recyclerview.addItemDecoration(dividerItemDecoration)
 
         adapter = MyAdapter()
@@ -47,17 +48,18 @@ class MainActivity : AppCompatActivity() {
 
         loadAllNotes()
     }
-private fun loadAllNotes() {
-    CoroutineScope(Dispatchers.IO).launch {
-        val results = dao.getAllNotes()
 
-        withContext(Dispatchers.Main) {
-            notes.clear()
-            notes.addAll(results)
-            adapter.notifyDataSetChanged()
+    private fun loadAllNotes() {
+        CoroutineScope(Dispatchers.IO).launch {
+            val results = dao.getAllNotes()
+
+            withContext(Dispatchers.Main) {
+                notes.clear()
+                notes.addAll(results)
+                adapter.notifyDataSetChanged()
+            }
         }
     }
-}
 
     private val startForAddResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -79,32 +81,8 @@ private fun loadAllNotes() {
     }
 
 
-
-//    private fun deleteAllNotes(){
-//        val builder = AlertDialog.Builder(this)
-//            .setTitle("Confirm delete")
-//            .setMessage("Are you sure you want to delete all data?")
-//            .setNegativeButton(android.R.string.cancel, null)
-//            .setPositiveButton(android.R.string.ok) {
-//                    dialogInterface, whichButton ->
-//
-//                CoroutineScope(Dispatchers.IO).launch {
-//
-//                        getDatabase(applicationContext)
-//                        .NotesDao()
-//                        .deleteAllPeople()
-//
-//                    // alternative - reload the whole database
-//                    // good only for small databases
-//                    loadAllNotes()
-//
-//                }
-//
-//            }
-//        builder.show()
-//    }
-
-    inner class MyViewHolder(view : View) : RecyclerView.ViewHolder(view),View.OnClickListener, View.OnLongClickListener {
+    inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view), View.OnClickListener,
+        View.OnLongClickListener {
         val title: TextView
         val decription: TextView
 
@@ -134,9 +112,9 @@ private fun loadAllNotes() {
         }
     }
 
-    inner class MyAdapter : RecyclerView.Adapter<MainActivity.MyViewHolder>(){
+    inner class MyAdapter : RecyclerView.Adapter<MainActivity.MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
-            val view = layoutInflater.inflate(R.layout.item_view,parent,false)
+            val view = layoutInflater.inflate(R.layout.item_view, parent, false)
             return MyViewHolder(view)
         }
 
@@ -154,15 +132,15 @@ private fun loadAllNotes() {
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
         val inflater = menuInflater
-        inflater.inflate(R.menu.notes_menu,menu)
+        inflater.inflate(R.menu.notes_menu, menu)
         return super.onCreateOptionsMenu(menu)
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        if(item.itemId == R.id.addNote){
-           addNewNote()
+        if (item.itemId == R.id.addNote) {
+            addNewNote()
             return true
-        }else if(item.itemId == R.id.clearNotes){
+        } else if (item.itemId == R.id.clearNotes) {
             CoroutineScope(Dispatchers.IO).launch {
                 dao.clearAllNotes()
                 loadAllNotes()
