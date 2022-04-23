@@ -89,4 +89,5 @@ class NoteActivity : AppCompatActivity() {
 
         return displayString
     }
+
 }
