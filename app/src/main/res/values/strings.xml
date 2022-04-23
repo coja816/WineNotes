@@ -1,0 +1,22 @@
+<resources>
+    <string name="app_name">WineNotes</string>
+    <string name="title_activity_note">NoteActivity</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string name="intent_key_position">position</string>
+    <string name="intent_key_person_id">person id</string>
+    <string name="intent_purpose_key">purpose</string>
+    <string name="intent_purpose_add_person">Add</string>
+    <string name="intent_purpose_update_person">Update</string>
+    <string name="add_note">Add Note</string>
+    <string name="note_description_hint">Note description here</string>
+    <string name="note_title_hint">Note title here</string>
+    <string name="add_note_btn">Add Note</string>
+</resources>
