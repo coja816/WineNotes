@@ -111,6 +111,7 @@ class MainActivity : AppCompatActivity() {
             return true
         }
     }
+
     inner class MyAdapter : RecyclerView.Adapter<MainActivity.MyViewHolder>() {
         override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
             val view = layoutInflater.inflate(R.layout.item_view, parent, false)
